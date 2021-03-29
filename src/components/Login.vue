@@ -62,7 +62,7 @@ export default {
       username: '',
       valid: false,
       rules: {
-        required: [v => !!v || 'Обязательное поле']
+        required: [v => !!v.trim() || 'Обязательное поле']
       }
     }
   },
