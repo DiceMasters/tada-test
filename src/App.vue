@@ -58,7 +58,7 @@ export default {
       console.log('Connection start...')
       this.loadingLoginDialog = true
 
-      this.connection = new WebSocket(this.wsConnectionURI + `?username=${username}`)
+      this.connection = new WebSocket(encodeURI(this.wsConnectionURI + `?username=${username}`))
 
       this.connection.onopen = e => {
         console.log(e)
