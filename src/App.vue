@@ -78,7 +78,13 @@ export default {
       }
     },
     changeRoom (room) {
-      this.activeRoom = room
+      this.$store.dispatch('api/fetchHistory', room)
+        .then(() => {
+          this.activeRoom = room
+        })
+        .catch(err => {
+          throw new Error(err)
+        })
     },
     createRoom (name) {
       const initialMessage = {

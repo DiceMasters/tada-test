@@ -70,6 +70,7 @@
 <script>
 import SvgNature from '@/components/func/SvgNature'
 import Cloud from '@/components/UI/Cloud'
+import { mapState } from 'vuex'
 
 export default {
   props: {
@@ -94,7 +95,7 @@ export default {
   },
   watch: {
     roomName () {
-      this.messageList = []
+      this.messageList = this.history.slice(-this.messageLimit)
     }
   },
   created () {
@@ -102,6 +103,11 @@ export default {
   },
   beforeDestroy () {
     this.getMessage && this.$bus.$off('message', this.getMessage)
+  },
+  computed: {
+    ...mapState({
+      history: store => store.history.history
+    })
   },
   methods: {
     async sendMessage () {

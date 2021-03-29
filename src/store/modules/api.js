@@ -31,10 +31,13 @@ const actions = {
         .catch(err => reject(err))
     })
   },
-  fetchHistory ({ getters }, name) {
+  fetchHistory ({ getters, commit }, name) {
     return new Promise((resolve, reject) => {
       Vue.$http.get(getters.getHistory(name))
-        .then(res => resolve(res))
+        .then(res => {
+          commit('history/setHistory', res.data.result, { root: true })
+          resolve(res)
+        })
         .catch(err => reject(err))
     })
   }
