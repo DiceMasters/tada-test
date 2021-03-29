@@ -1,5 +1,7 @@
 # tada-test
 
+Демо https://dicemasters.github.io/tada-test/
+
 ## Project setup
 ```
 npm install
